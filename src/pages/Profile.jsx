@@ -56,7 +56,7 @@ export const Profile = () => {
 
   return (
     <div>
-      <h2>Profile</h2>
+      <h1>Profile</h1>
       {profileData && (
         <div>
           <p>Username: {profileData.username}</p>

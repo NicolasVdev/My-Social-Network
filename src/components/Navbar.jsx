@@ -1,7 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { isAuthenticated, logout } from '../utils/authUtils';
-// import Cookies from 'js-cookie';
 import { useNavigate } from 'react-router-dom';
 import { useAtomValue } from 'jotai';
 import { profileAtom } from './Atoms';
@@ -18,7 +17,7 @@ export const Navbar = () => {
   }
   return (
     <>
-       <Link to="/">Home</Link>
+      <Link to="/">Home</Link>
       <Link to="/register">Register</Link>
       {isLogged ? (
         <>

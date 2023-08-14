@@ -42,7 +42,7 @@ export const Register = () => {
   };
   return (
     <div>
-      <h2>Registration Form</h2>
+      <h1>Registration Form</h1>
       <input type="text"
       placeholder='Username'
       value={registrationState.username}
