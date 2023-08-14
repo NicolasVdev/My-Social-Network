@@ -17,17 +17,19 @@ export const Navbar = () => {
   }
   return (
     <>
-      <Link to="/">Home</Link>
-      <Link to="/register">Register</Link>
-      {isLogged ? (
-        <>
-          <span>Hello, {profile.username} </span>
-          <Link to="/profile">Profile</Link>
-          <button onClick={Logout}>Logout</button>
-        </>
-      ) : (
-        <Link to="/login">Login</Link>
-      )}
+      <div className='flex gap-10'>
+        <Link to="/">Home</Link>
+        <Link to="/register">Register</Link>
+        {isLogged ? (
+          <>
+            <span>Hello, {profile.username} </span>
+            <Link to="/profile">Profile</Link>
+            <button onClick={Logout}>Logout</button>
+          </>
+        ) : (
+          <Link to="/login">Login</Link>
+        )}
+      </div>
     </>
   )
 }
