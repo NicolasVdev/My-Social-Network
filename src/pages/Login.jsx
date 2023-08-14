@@ -1,12 +1,9 @@
 import React from 'react';
 import Cookies from 'js-cookie';
 import { useNavigate } from 'react-router-dom';
-import { atom, useAtom } from 'jotai';
+import { useAtom } from 'jotai';
+import { loginStateAtom } from '../components/Atoms';
 
-export const loginStateAtom = atom({
-  identifier: '',
-  password: '',
-});
 
 export const Login = () => {
 

@@ -1,3 +1,17 @@
 import { atom } from 'jotai';
 
-export const profileAtom = atom(null);
+export const profileAtom = atom({
+  user: null,
+  userId: null
+});
+
+export const loginStateAtom = atom({
+  identifier: '',
+  password: '',
+});
+
+export const registrationStateAtom = atom ({
+  username: '',
+  email: '',
+  password: ''
+});

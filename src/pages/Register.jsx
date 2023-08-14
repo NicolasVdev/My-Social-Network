@@ -1,12 +1,7 @@
 import Cookies from 'js-cookie';
 import { useNavigate } from 'react-router-dom';
-import { atom, useAtom } from 'jotai';
-
-export const registrationStateAtom = atom ({
-  username: '',
-  email: '',
-  password: ''
-});
+import { useAtom } from 'jotai';
+import { registrationStateAtom } from '../components/Atoms';
 
 export const Register = () => {
 

@@ -5,7 +5,7 @@ import { profileAtom } from '../components/Atoms';
 import { EditProfile } from '../components/EditProfile';
 
 export const Profile = () => {
-  const [profileData] = useAtom(profileAtom);
+  const [profileData, setProfileData] = useAtom(profileAtom);
 
   useEffect(() => {
     const token = Cookies.get('token');
