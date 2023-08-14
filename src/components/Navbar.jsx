@@ -1,16 +1,16 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { isAuthenticated, logout } from '../utils/authUtils';
-import Cookies from 'js-cookie';
+// import Cookies from 'js-cookie';
 import { useNavigate } from 'react-router-dom';
+import { useAtomValue } from 'jotai';
+import { profileAtom } from './Atoms';
 
 export const Navbar = () => {
-  const username = Cookies.get('username');
-  console.log(username)
+  const profile = useAtomValue(profileAtom);
   const isLogged = isAuthenticated();
-  console.log(isLogged);
-
   const navigate = useNavigate();
+
 
   const Logout = () => {
     logout();
@@ -22,7 +22,7 @@ export const Navbar = () => {
       <Link to="/register">Register</Link>
       {isLogged ? (
         <>
-          <span>Hello, {username}</span>
+          <span>Hello, {profile.username} </span>
           <Link to="/profile">Profile</Link>
           <button onClick={Logout}>Logout</button>
         </>

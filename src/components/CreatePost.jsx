@@ -5,9 +5,8 @@ import { profileAtom } from './Atoms';
 
 export const CreatePost = () => {
   const [newPostText, setNewPostText] = useState('');
-  const [profile] = useAtom(profileAtom);
-  const userId = profile.userId;
-  console.log(profile);
+  const [profileData] = useAtom(profileAtom);
+  const userId = profileData.userId;
 
   const handleCreatePost = () => {
     const token = Cookies.get('token');
@@ -17,8 +16,10 @@ export const CreatePost = () => {
     }
 
     const data = {
-      text: newPostText,
-      user: userId
+      "data": {
+        "text": newPostText,
+        "user": userId
+      }
     };
 
     fetch('http://localhost:1337/api/posts', {

@@ -1,14 +1,15 @@
 import React from 'react';
 import Cookies from 'js-cookie';
 import { useNavigate } from 'react-router-dom';
-import { useAtom } from 'jotai';
-import { loginStateAtom } from '../components/Atoms';
+import { useAtom, useSetAtom } from 'jotai';
+import { loginStateAtom, profileAtom } from '../components/Atoms';
 
 
 export const Login = () => {
 
   const [loginState, setLoginState] = useAtom(loginStateAtom);
-
+  const setProfile = useSetAtom(profileAtom);
+  
   const navigate = useNavigate();
 
   const handleLogin = (e) => {
@@ -30,9 +31,9 @@ export const Login = () => {
         response.json().then(data => {
 
           Cookies.set('token', data.jwt);
-          Cookies.set('username', data.user.username);
-
-          console.log(data.jwt);
+          const dataUser = data.user;
+          setProfile({user: dataUser, userId: dataUser.id, username: dataUser.username});
+          
         
           navigate('/');
         });
