@@ -2,13 +2,13 @@ import React from 'react';
 import Cookies from 'js-cookie';
 import { useNavigate } from 'react-router-dom';
 import { useAtom, useSetAtom } from 'jotai';
-import { loginStateAtom, profileAtom } from '../components/Atoms';
+import { loginStateAtom } from '../components/Atoms';
 
 
 export const Login = () => {
 
   const [loginState, setLoginState] = useAtom(loginStateAtom);
-  const setProfile = useSetAtom(profileAtom);
+  const setProfile = useSetAtom(loginStateAtom);
   
   const navigate = useNavigate();
 
@@ -29,10 +29,15 @@ export const Login = () => {
     .then(response => {
       if (response.ok) {
         response.json().then(data => {
-
-          Cookies.set('token', data.jwt);
+          const userInfo = {
+            token: data.jwt,
+            username: data.user.username,
+            userId: data.user.id
+          };
+          Cookies.set('userInfo', JSON.stringify(userInfo))
           const dataUser = data.user;
-          setProfile({user: dataUser, userId: dataUser.id, username: dataUser.username});
+          console.log(data.jwt);
+          setProfile({user: dataUser, userId: dataUser.id, username: dataUser.username, isLogged: true, token: data.jwt});
           
         
           navigate('/');

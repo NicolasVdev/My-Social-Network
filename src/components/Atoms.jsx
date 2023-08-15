@@ -8,6 +8,11 @@ export const profileAtom = atom({
 export const loginStateAtom = atom({
   identifier: '',
   password: '',
+  user: null,
+  userId: null,
+  username: null,
+  isLogged: false,
+  token: null
 });
 
 export const registrationStateAtom = atom ({

@@ -31,8 +31,6 @@ export const Register = () => {
           const dataUsername = data.user.username;
           Cookies.set('token', token);
           Cookies.set('username', dataUsername)
-          console.log(token);
-          console.log(data);
           navigate('/')
         })
       } else {

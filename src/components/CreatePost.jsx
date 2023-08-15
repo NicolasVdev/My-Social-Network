@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
 import Cookies from 'js-cookie';
 import { useAtom } from 'jotai';
-import { profileAtom } from './Atoms';
+import { loginStateAtom } from './Atoms';
 
 export const CreatePost = () => {
   const [newPostText, setNewPostText] = useState('');
-  const [profileData] = useAtom(profileAtom);
-  const userId = profileData.userId;
+  const [profileData] = useAtom(loginStateAtom);
 
   const handleCreatePost = () => {
     const token = Cookies.get('token');
@@ -18,7 +17,7 @@ export const CreatePost = () => {
     const data = {
       "data": {
         "text": newPostText,
-        "user": userId
+        "user": profileData.userId
       }
     };
 
@@ -32,7 +31,7 @@ export const CreatePost = () => {
     })
     .then(response => {
       if (response.ok) {
-        console.log('Post created successfully');
+        console.log('Post created successfully', data);
         setNewPostText('');
       } else {
         console.error('Failed to create post');

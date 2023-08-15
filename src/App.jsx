@@ -5,8 +5,26 @@ import { Register } from './pages/Register';
 import { Login } from './pages/Login';
 import { Profile } from './pages/Profile'
 import { Navbar } from './components/Navbar';
+import Cookies from 'js-cookie';
+import { useEffect } from 'react';
+import { useAtom } from 'jotai';
+import { loginStateAtom } from './components/Atoms';
 
 function App() {
+  const [loginState, setLoginState] = useAtom(loginStateAtom);
+
+  useEffect(() => {
+    const cookieInfo = Cookies.get('userInfo')
+    if (cookieInfo) {
+      const userInfo = JSON.parse(cookieInfo)
+      setLoginState({
+        isLogged: true,
+        token: userInfo.token,
+        userId: userInfo.userId,
+        username: userInfo.username
+      });
+    }
+  }, []);
   return (
     <>
       <BrowserRouter>
