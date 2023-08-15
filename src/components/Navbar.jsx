@@ -1,20 +1,12 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { logout } from '../utils/authUtils';
-import { useNavigate } from 'react-router-dom';
+import { Logout } from './Logout';
 import { useAtomValue } from 'jotai';
 import { loginStateAtom } from './Atoms';
 
 export const Navbar = () => {
   const profile = useAtomValue(loginStateAtom);
-  // const isLogged = isAuthenticated();
-  const navigate = useNavigate();
 
-
-  const Logout = () => {
-    logout();
-    navigate('/')
-  }
   return (
     <>
       <div className='flex gap-10'>
@@ -24,7 +16,7 @@ export const Navbar = () => {
           <>
             <span>Hello, {profile.username} </span>
             <Link to="/profile">Profile</Link>
-            <button onClick={Logout}>Logout</button>
+            <Logout/>
           </>
         ) : (
           <Link to="/login">Login</Link>

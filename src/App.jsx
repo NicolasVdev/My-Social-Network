@@ -9,6 +9,7 @@ import Cookies from 'js-cookie';
 import { useEffect } from 'react';
 import { useAtom } from 'jotai';
 import { loginStateAtom } from './components/Atoms';
+import { Author } from './pages/Author';
 
 function App() {
   const [loginState, setLoginState] = useAtom(loginStateAtom);
@@ -34,6 +35,7 @@ function App() {
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
           <Route path="/profile" element={<Profile />} />
+          <Route path="/user/:username" element={<Author />} />
         </Routes>
       </BrowserRouter>
     </>

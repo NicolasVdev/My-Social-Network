@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useAtom } from 'jotai';
-import { loginStateAtom } from './Atoms'; // Assurez-vous de remplacer le chemin avec le bon emplacement de votre atom
+import { loginStateAtom } from './Atoms';
+import { Link } from 'react-router-dom';
 
 export const ListPosts = () => {
   const [posts, setPosts] = useState([]);
@@ -66,10 +67,9 @@ export const ListPosts = () => {
       <p>Total Posts: {postCount}</p>
       {posts.map(post => (
         <>
-        {console.log(post)}
         <div className='py-3' key={post.id}>
           <p>{post.attributes.text}</p>
-          <p>Username: {post.attributes.user.data.attributes.username}</p>
+          <Link to={`user/${post.attributes.user.data.attributes.username}`}>{post.attributes.user.data.attributes.username}</Link>
           <p>Likes: {post.like || 0}</p>
           {post.attributes.user.data.id === loginState.userId ? (
             <button onClick={() => handleDelete(post.id)}>Delete</button>

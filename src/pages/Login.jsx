@@ -35,6 +35,8 @@ export const Login = () => {
             userId: data.user.id
           };
           Cookies.set('userInfo', JSON.stringify(userInfo))
+          Cookies.set('token', data.jwt);
+          Cookies.set('username', data.user.username);
           const dataUser = data.user;
           console.log(data.jwt);
           setProfile({user: dataUser, userId: dataUser.id, username: dataUser.username, isLogged: true, token: data.jwt});

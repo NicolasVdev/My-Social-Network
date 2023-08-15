@@ -27,10 +27,8 @@ export const Register = () => {
     .then(response => {
       if (response.ok) {
         response.json().then(data => {
-          const token = data.token;
-          const dataUsername = data.user.username;
-          Cookies.set('token', token);
-          Cookies.set('username', dataUsername)
+          Cookies.set('token', data.token);
+          Cookies.set('username', data.user.username)
           navigate('/')
         })
       } else {
