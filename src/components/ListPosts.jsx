@@ -25,7 +25,7 @@ export const ListPosts = () => {
       }
       
       if (data.data) {
-        setPosts(data.data.map(post => post.attributes));
+        setPosts(data.data.map(post => post));
       } else {
         console.error('Data is missing');
       }
@@ -44,7 +44,6 @@ export const ListPosts = () => {
       }
     })
     .then(response => {
-      console.log(postId)
       if (response.ok) {
         console.log('Post deleted successfully');
         reloadPostsList();
@@ -66,14 +65,17 @@ export const ListPosts = () => {
       <h2>List of Posts</h2>
       <p>Total Posts: {postCount}</p>
       {posts.map(post => (
+        <>
+        {console.log(post)}
         <div className='py-3' key={post.id}>
-          <p>{post.text}</p>
-          <p>Username: {post.user.data.attributes.username}</p>
+          <p>{post.attributes.text}</p>
+          <p>Username: {post.attributes.user.data.attributes.username}</p>
           <p>Likes: {post.like || 0}</p>
-          {post.user.data.id === loginState.userId ? (
+          {post.attributes.user.data.id === loginState.userId ? (
             <button onClick={() => handleDelete(post.id)}>Delete</button>
           ) : null}
         </div>
+        </>
       ))}
     </div>
   );
